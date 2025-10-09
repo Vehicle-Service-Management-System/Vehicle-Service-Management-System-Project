@@ -91,6 +91,30 @@ public class Customer {
     public String toEntryString(){
         return id + "," + name + "," + email + "," + phoneNumber + "," + address;
     }
+    public String toLogString(){
+        return id + "," + name + "," + email + "," + phoneNumber + "," + address;
+    }
+    public String toDataString(){
+        return id + "," + name + "," + email + "," + phoneNumber + "," + address;
+    }
+    public String toExportString(){
+        return id + "," + name + "," + email + "," + phoneNumber + "," + address;
+    }
+    public String toImportString(){
+        return id + "," + name + "," + email + "," + phoneNumber + "," + address;
+    }
+    public String toBackupString(){
+        return id + "," + name + "," + email + "," + phoneNumber + "," + address;
+    }   
+    public String toRestoreString(){
+        return id + "," + name + "," + email + "," + phoneNumber + "," + address;
+    }
+    public String toSyncString(){
+        return id + "," + name + "," + email + "," + phoneNumber + "," + address;
+    }   
+    public String toArchiveString(){
+        return id + "," + name + "," + email + "," + phoneNumber + "," + address;
+    }   
     public String fromFileString(String fileString){
         String[] parts = fileString.split(",");
         if(parts.length == 5){
