@@ -65,19 +65,26 @@ public class Vehicle {
     public String toCompactString() {
         return registrationNumber + " - " + make + " " + model;
     }
-    public String getSummary() {
-        return registrationNumber + " | " + make + " | " + model + " | " + year;
-    } 
-    public String getOwnerInfo() {
-        return ownerName + " (" + ownerContact + ")";
+    public String toSummString() {
+        return registrationNumber + " (" + make + " " + model + ", " + year + ")";
     }
-    public String getVehicleInfo() {
-        return make + " " + model + " (" + year + ")";
+    public static Vehicle fromCSV(String csvString) {
+        try {
+        String[] parts = csvString.split(",");
+        if (parts.length == 6) {
+            String registrationNumber = parts[0];
+            String make = parts[1];
+            String model = parts[2];
+            int year = Integer.parseInt(parts[3]);
+            String ownerName = parts[4];
+            String ownerContact = parts[5];
+            return new Vehicle(registrationNumber, make, model, year, ownerName, ownerContact);
+        }
+        return null;
+    } catch (Exception e) {
+        e.printStackTrace();
+        return null;
     }
-    public String getFullInfo() {
-        return registrationNumber + " - " + make + " " + model + " (" + year + "), Owner: " + ownerName + " (" + ownerContact + ")";
-    }
-    public String getContactCard() {
-        return "Owner: " + ownerName + "\nContact: " + ownerContact + "\nVehicle: " + make + " " + model + " (" + year + ")\nReg No: " + registrationNumber;
-    } 
 }
+
+}   

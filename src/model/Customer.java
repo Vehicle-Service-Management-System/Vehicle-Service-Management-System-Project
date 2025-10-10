@@ -61,70 +61,23 @@ public class Customer {
     public String toSummaryString(){
         return "Customer ID: " + id + ", Name: " + name;
     }
-    public String toDetailedString(){
-        return "Customer ID: " + id + "\nName: " + name + "\nEmail: " + email + "\nPhone Number: " + phoneNumber + "\nAddress: " + address;
-    }
-    public String toInfoString(){
-        return "Customer ID: " + id + ", Name: " + name + ", Email: " + email + ", Phone Number: " + phoneNumber + ", Address: " + address;
-    }
-    public String toFullString(){
-        return "Customer ID: " + id + "\nName: " + name + "\nEmail: " + email + "\nPhone Number: " + phoneNumber + "\nAddress: " + address;
-    }
-    public String toVerboseString(){
-        return "Customer ID: " + id + "\nName: " + name + "\nEmail: " + email + "\nPhone Number: " + phoneNumber + "\nAddress: " + address;
-    }
-    public String toCompleteString(){
-        return "Customer ID: " + id + "\nName: " + name + "\nEmail: " + email + "\nPhone Number: " + phoneNumber + "\nAddress: " + address;
-    }
-    public String toConciseString(){
-        return "Customer ID: " + id + ", Name: " + name + ", Email: " + email + ", Phone Number: " + phoneNumber + ", Address: " + address;
-    }   
-    public String toBriefString(){
-        return "Customer ID: " + id + ", Name: " + name + ", Email: " + email + ", Phone Number: " + phoneNumber + ", Address: " + address;
-    }
-    public String toSnapshotString(){
-        return "Customer ID: " + id + ", Name: " + name + ", Email: " + email + ", Phone Number: " + phoneNumber + ", Address: " + address;
-    }   
-    public String toRecordString(){
-        return id + "," + name + "," + email + "," + phoneNumber + "," + address;
-    }
-    public String toEntryString(){
-        return id + "," + name + "," + email + "," + phoneNumber + "," + address;
-    }
-    public String toLogString(){
-        return id + "," + name + "," + email + "," + phoneNumber + "," + address;
-    }
-    public String toDataString(){
-        return id + "," + name + "," + email + "," + phoneNumber + "," + address;
-    }
-    public String toExportString(){
-        return id + "," + name + "," + email + "," + phoneNumber + "," + address;
-    }
-    public String toImportString(){
-        return id + "," + name + "," + email + "," + phoneNumber + "," + address;
-    }
-    public String toBackupString(){
-        return id + "," + name + "," + email + "," + phoneNumber + "," + address;
-    }   
-    public String toRestoreString(){
-        return id + "," + name + "," + email + "," + phoneNumber + "," + address;
-    }
-    public String toSyncString(){
-        return id + "," + name + "," + email + "," + phoneNumber + "," + address;
-    }   
-    public String toArchiveString(){
-        return id + "," + name + "," + email + "," + phoneNumber + "," + address;
-    }   
-    public String fromFileString(String fileString){
-        String[] parts = fileString.split(",");
+
+    public static Customer fromCSV(String csvString){
+        try {   
+        String[] parts = csvString.split(",");
         if(parts.length == 5){
-            this.id = Integer.parseInt(parts[0]);
-            this.name = parts[1];
-            this.email = parts[2];
-            this.phoneNumber = parts[3];
-            this.address = parts[4];
+            int id = Integer.parseInt(parts[0]);
+            String name = parts[1];
+            String email = parts[2];
+            String phoneNumber = parts[3];
+            String address = parts[4];
+            return new Customer(id, name, email, phoneNumber, address);
         }
-        return fileString;
+        return null;    
+    }   catch (Exception e) {
+        e.printStackTrace();
+        return null;
     }
+    }   
     
 }

@@ -68,92 +68,23 @@ public class Service {
     public String toSummaryString(){
         return "Service ID: " + serviceId + ", Vehicle Reg: " + vehicleReg + ", Service Type: " + serviceType + ", Mechanic: " + mechanic + ", Service Date: " + serviceDate + ", Cost: " + cost;
     }
-    public String toSummaryStringShort(){
-        return "Service ID: " + serviceId + ", Vehicle Reg: " + vehicleReg + ", Service Type: " + serviceType + ", Cost: " + cost;
+
+    public static Service fromCSV(String csv) {
+        try {
+        String[] parts = csv.split(",");
+        if (parts.length != 6) {
+            throw new IllegalArgumentException("Invalid CSV format for Service");
+        }
+        int serviceId = Integer.parseInt(parts[0]);
+        String vehicleReg = parts[1];
+        String serviceType = parts[2];
+        String mechanic = parts[3];
+        String serviceDate = parts[4];
+        double cost = Double.parseDouble(parts[5]);
+        return new Service(serviceId, vehicleReg, serviceType, mechanic, serviceDate, cost);
+    } catch (NumberFormatException e) {
+        throw new IllegalArgumentException("Invalid number format in CSV for Service", e);
     }
-    public String toSummaryStringCompact(){
-        return serviceId + " - " + vehicleReg + " - " + serviceType;
     }
-    public String toSummaryStringFile(){
-        return serviceId + "," + vehicleReg + "," + serviceType + "," + mechanic + "," + serviceDate + "," + cost;
-    }
-    public String toSummaryStringFileShort(){
-        return serviceId + "," + vehicleReg + "," + serviceType + "," + cost;
-    }
-    public String toSummaryStringFileCompact(){
-        return serviceId + "," + vehicleReg + "," + serviceType;
-    }
-    public String toDetailedString(){
-        return "Service ID: " + serviceId + "\nVehicle Reg: " + vehicleReg + "\nService Type: " + serviceType + "\nMechanic: " + mechanic + "\nService Date: " + serviceDate + "\nCost: " + cost;
-    }
-    public String toDetailedStringShort(){
-        return "Service ID: " + serviceId + "\nVehicle Reg: " + vehicleReg + "\nService Type: " + serviceType + "\nCost: " + cost;
-    }
-    public String toDetailedStringCompact(){
-        return serviceId + " - " + vehicleReg + " - " + serviceType;
-    }
-    public String toDetailedStringFile(){
-        return serviceId + "," + vehicleReg + "," + serviceType + "," + mechanic + "," + serviceDate + "," + cost;
-    }
-    public String toDetailedStringFileShort(){
-        return serviceId + "," + vehicleReg + "," + serviceType + "," + cost;
-    }
-    public String toDetailedStringFileCompact(){
-        return serviceId + "," + vehicleReg + "," + serviceType;
-    }
-    public String toLongString(){
-        return "Service ID: " + serviceId + ", Vehicle Reg: " + vehicleReg + ", Service Type: " + serviceType + ", Mechanic: " + mechanic + ", Service Date: " + serviceDate + ", Cost: " + cost;
-    }
-    public String toLongStringShort(){
-        return "Service ID: " + serviceId + ", Vehicle Reg: " + vehicleReg + ", Service Type: " + serviceType + ", Cost: " + cost;
-    }
-    public String toLongStringCompact(){
-        return serviceId + " - " + vehicleReg + " - " + serviceType;
-    }
-    public String toLongStringFile(){
-        return serviceId + "," + vehicleReg + "," + serviceType + "," + mechanic + "," + serviceDate + "," + cost;
-    }
-    public String toLongStringFileShort(){
-        return serviceId + "," + vehicleReg + "," + serviceType + "," + cost;
-    }   
-    public String toLongStringFileCompact(){
-        return serviceId + "," + vehicleReg + "," + serviceType;
-    }  
-    public String toVeryLongString(){
-        return "Service ID: " + serviceId + ", Vehicle Reg: " + vehicleReg + ", Service Type: " + serviceType + ", Mechanic: " + mechanic + ", Service Date: " + serviceDate + ", Cost: " + cost;
-    }  
-    public String toVeryLongStringShort(){
-        return "Service ID: " + serviceId + ", Vehicle Reg: " + vehicleReg + ", Service Type: " + serviceType + ", Cost: " + cost;
-    }   
-    public String toVeryLongStringCompact(){
-        return serviceId + " - " + vehicleReg + " - " + serviceType;
-    }   
-    public String toVeryLongStringFile(){
-        return serviceId + "," + vehicleReg + "," + serviceType + "," + mechanic + "," + serviceDate + "," + cost;
-    }   
-    public String toVeryLongStringFileShort(){
-        return serviceId + "," + vehicleReg + "," + serviceType + "," + cost;
-    }   
-    public String toVeryLongStringFileCompact(){
-        return serviceId + "," + vehicleReg + "," + serviceType;
-    }
-    public String toExtraLongString(){
-        return "Service ID: " + serviceId + ", Vehicle Reg: " + vehicleReg + ", Service Type: " + serviceType + ", Mechanic: " + mechanic + ", Service Date: " + serviceDate + ", Cost: " + cost;
-    }        
-    public String toExtraLongStringShort(){
-        return "Service ID: " + serviceId + ", Vehicle Reg: " + vehicleReg + ", Service Type: " + serviceType + ", Cost: " + cost;
-    }  
-    public String toExtraLongStringCompact(){
-        return serviceId + " - " + vehicleReg + " - " + serviceType;
-    } 
-    public String fromFileString(String fileString){
-        String[] parts = fileString.split(",");
-        this.serviceId = Integer.parseInt(parts[0]);
-        this.vehicleReg = parts[1];
-        this.serviceType = parts[2];
-        this.mechanic = parts[3];
-        this.serviceDate = parts[4];
-        this.cost = Double.parseDouble(parts[5]);
-        return toString();
-    }   
+
 }
