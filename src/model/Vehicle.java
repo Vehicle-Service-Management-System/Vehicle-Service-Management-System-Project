@@ -35,9 +35,9 @@ public class Vehicle {
     }
     public int getYear() {
         return year;
-    }    
-    public String getOwnerContact() {
-        return ownerContact;
+    }
+    public String getOwnerName() {
+        return ownerName;
     }
     public int getOwnerId() {
         return ownerId;
@@ -94,9 +94,8 @@ public class Vehicle {
         return null;
     }
 }
-    public String toCSV() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'toCSV'");
-    }
+   public String toCSV() {
+    return registrationNumber + "," + make + "," + model + "," + year + "," + ownerId;
+}
 
 }   

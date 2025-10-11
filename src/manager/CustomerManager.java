@@ -99,7 +99,7 @@ public class CustomerManager {
         }
     }
     public Collection<Customer> getAllCustomers() {
-    return customers.values();
+        return customers.values();
     }
     public Customer getCustomerById(int id) {
         return customers.get(id);

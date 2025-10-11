@@ -1,38 +1,48 @@
 package util;
-import java.io.*;
-import java.util.*;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class FileHandler {
+
     public static void saveToFile(String filePath, List<String> lines) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            for (String line : lines) {
-                writer.write(line);
-                writer.newLine();
-            }
-        }catch (IOException e) {
-            throw new IOException("Error writing to file: " + e.getMessage());
+        Path path = Paths.get(filePath);
+        try {
+            Files.write(path, lines, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+        } catch (IOException e) {
+            System.err.println("Failed to save data to " + filePath);
+            throw e;
         }
     }
 
-
-public static void appendToFile(String filePath, String line) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-            writer.write(line);
-            writer.newLine();
+    public static void appendToFile(String filePath, String line) throws IOException {
+        Path path = Paths.get(filePath);
+        try {
+            Files.write(path, Collections.singletonList(line), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
         } catch (IOException e) {
-            throw new IOException("Error appending to file: " + e.getMessage());
+            System.err.println("Failed to append data to " + filePath);
+            throw e;
         }
     }
-public static List<String> loadFromFile(String filePath) throws IOException {
-        List<String> lines = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                lines.add(line);
-            }
-        } catch (IOException e) {
-            throw new IOException("Error reading from file: " + e.getMessage());
+
+    public static List<String> loadFromFile(String filePath) throws IOException {
+        Path path = Paths.get(filePath);
+
+        if (!Files.exists(path)) {
+            return new ArrayList<>();
         }
-        return lines;
+
+        try {
+            return Files.readAllLines(path);
+        } catch (IOException e) {
+            System.err.println("Failed to load data from " + filePath);
+            throw e;
+        }
     }
 }
