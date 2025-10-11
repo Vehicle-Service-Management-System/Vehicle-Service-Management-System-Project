@@ -7,6 +7,7 @@ public class Vehicle {
     private int year;   
     private String ownerName;
     private String ownerContact;
+    private int ownerId;
 
     public Vehicle(String registrationNumber, String make, String model, int year, String ownerName, String ownerContact) {
         this.registrationNumber = registrationNumber;
@@ -15,6 +16,13 @@ public class Vehicle {
         this.year = year;
         this.ownerName = ownerName;
         this.ownerContact = ownerContact;
+    }
+    public Vehicle(String registrationNumber2, String make2, String model2, int year2, int ownerId) {
+        this.registrationNumber = registrationNumber2;
+        this.make = make2;
+        this.model = model2;
+        this.year = year2;
+        this.ownerId = ownerId;
     }
     public String getRegistrationNumber() {
         return registrationNumber;
@@ -27,12 +35,12 @@ public class Vehicle {
     }
     public int getYear() {
         return year;
-    }
-    public String getOwnerName() {
-        return ownerName;
-    }
+    }    
     public String getOwnerContact() {
         return ownerContact;
+    }
+    public int getOwnerId() {
+        return ownerId;
     }
     public void setMake(String make) {
         this.make = make;
@@ -86,5 +94,9 @@ public class Vehicle {
         return null;
     }
 }
+    public String toCSV() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'toCSV'");
+    }
 
 }   

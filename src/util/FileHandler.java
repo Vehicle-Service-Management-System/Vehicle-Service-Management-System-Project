@@ -13,7 +13,7 @@ public class FileHandler {
             throw new IOException("Error writing to file: " + e.getMessage());
         }
     }
-}
+
 
 public static void appendToFile(String filePath, String line) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
