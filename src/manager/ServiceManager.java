@@ -104,6 +104,25 @@ public class ServiceManager {
         }
     }
 
+    public List<Service> getAllServices() {
+    List<Service> allServices = new ArrayList<>();
+    for (List<Service> dailyServices : serviceMap.values()) {
+        allServices.addAll(dailyServices);
+    }
+    return allServices;
+}
+
+public Service getServiceById(int serviceId) {
+    for (List<Service> dailyServices : serviceMap.values()) {
+        for (Service service : dailyServices) {
+            if (service.getServiceId() == serviceId) {
+                return service;
+            }
+        }
+    }
+    return null;
+    }
+    
     public List<Service> generateReportByDate(String date) {
         return serviceMap.getOrDefault(date, Collections.emptyList());
     }

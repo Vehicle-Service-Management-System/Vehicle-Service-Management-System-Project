@@ -5,6 +5,7 @@ import util.FileHandler;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -97,7 +98,9 @@ public class CustomerManager {
             }
         }
     }
-
+    public Collection<Customer> getAllCustomers() {
+    return customers.values();
+    }
     public Customer getCustomerById(int id) {
         return customers.get(id);
     }

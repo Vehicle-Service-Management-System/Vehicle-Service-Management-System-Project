@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Vehicle Service Management System</title>
+        <link rel="stylesheet" href="styles/manage_customer.css">
+        <link rel="stylesheet" href="styles/common.css">
+        <link rel="icon" type="image/x-icon" href="images/vehicare-logo.ico">
+    </head>
+    <body>
+        <header>
+            <div class="logo-text-container">
+                <img src="images/vehicare-logo.png">
+                <label>VEHICARE</label>
+            </div>
+            <div class="menu-icons-container">
+                <div class="menu-icon">
+                    <img src="images/user.svg">
+                    <label>Customers</label>
+                </div>
+                <div class="menu-icon">
+                    <img src="images/sports-car.svg">
+                    <label>Vehicles</label>
+                </div>
+                <div class="menu-icon">
+                    <img src="images/repair-tool.svg">
+                    <label>Services</label>
+                </div>
+                <div class="menu-icon">
+                    <img src="images/history.svg">
+                    <label>History</label>
+                </div>
+            </div>
+            <div class="account-username-container">
+                <label>Kasinathan</label>
+                <img src="images/human.svg">
+            </div>
+        </header>
+
+        <div class="form-container">
+        <h1>Customer Info</h1>
+        <form id="registrationForm" action="registerCustomer" method="post">
+
+            <div class="form-content">
+                <label for="customerId">ID
+                </label>
+                <input type="text" id="customerId" required placeholder="Customer ID">
+            </div>
+
+            <div class="form-content">
+                <label for="customerName">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Z"/></svg>
+                </label>
+                <input type="text" id="name" required placeholder="Customer Name">
+            </div>
+
+            <div class="form-content">
+                <label for="email">@</label>
+                <input type="email" id="email" required placeholder="Email">
+            </div>
+
+            <div class="form-content">
+                <label for="phoneNo">#
+                </label>
+                <input type="text" id="phoneNo" required placeholder="Phone No.">
+            </div>
+
+            <div class="form-content">
+                <label for="address">🏠︎
+                </label>
+                <input type="text" id="address" required placeholder="Address">   
+            </div>
+            <button type="submit">Register</button>
+            <p id="error-message"></p>
+        </form>
+    </div>
+    </body>
+</html>
