@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -71,7 +72,7 @@ public class CustomerServlet extends HttpServlet {
 
     private void listCustomers(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Customer> customerList = (List<Customer>) customerManager.getAllCustomers();
+        List<Customer> customerList = new ArrayList<>(customerManager.getAllCustomers());
         request.setAttribute("customerList", customerList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("customer-list.jsp");
         dispatcher.forward(request, response);
