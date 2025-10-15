@@ -3,12 +3,9 @@ package manager;
 import model.Service;
 import util.DatabaseConnector;
 
-import java.io.IOException;
 import java.sql.*;
 import util.IdGenerator;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.time.LocalDate;
 
 public class ServiceManager {
 

@@ -5,6 +5,7 @@ import util.DatabaseConnector;
 
 import java.io.IOException;
 import java.sql.*;
+import util.IdGenerator;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -42,7 +43,7 @@ public class CustomerManager {
     }
 
     public void addCustomer(String name, String email, String phoneNumber, String address) {
-        String id = UUID.randomUUID().toString();
+        String id = IdGenerator.generateShortId();
         String sql = "INSERT INTO customers (id, name, email, phone_number, address) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -61,29 +62,33 @@ public class CustomerManager {
         String sql = "UPDATE customers SET name = ?, email = ?, phone_number = ?, address = ? WHERE id = ?";
         try (Connection conn = DatabaseConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
             pstmt.setString(1, name);
             pstmt.setString(2, email);
             pstmt.setString(3, phoneNumber);
             pstmt.setString(4, address);
             pstmt.setString(5, id);
-            pstmt.executeUpdate();
+            
+            int affectedRows = pstmt.executeUpdate();
+            if (affectedRows > 0) {
+                Customer customer = customers.get(id);
+                if (customer != null) {
+                    customer.setName(name);
+                    customer.setEmail(email);
+                    customer.setPhoneNumber(phoneNumber);
+                    customer.setAddress(address);
+                }
+            }
         } catch (SQLException e) {
             System.err.println("CRITICAL ERROR: Could not update customer in database: " + e.getMessage());
         }
-        Customer customer = customers.get(id);
-        if (customer != null) {
-            customer.setName(name);
-            customer.setEmail(email);
-            customer.setPhoneNumber(phoneNumber);
-            customer.setAddress(address);
-        } catch (SQLException e) {
-            System.err.println("Error updating customer in database: " + e.getMessage());
-        }
+    }
 
     public void deleteCustomer(String id) {
         String sql = "DELETE FROM customers WHERE id = ?";
         try (Connection conn = DatabaseConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
             pstmt.setString(1, id);
             int affectedRows = pstmt.executeUpdate();
             if (affectedRows > 0) {
@@ -91,11 +96,6 @@ public class CustomerManager {
             }
         } catch (SQLException e) {
             System.err.println("CRITICAL ERROR: Could not delete customer from database: " + e.getMessage());
-        }
-        if (customers.remove(id) != null) {
-            saveAllCustomersToFile();
-        } else {
-            System.out.println("Customer with ID " + id + " not found.");
         }
     }
     public Collection<Customer> getAllCustomers() {

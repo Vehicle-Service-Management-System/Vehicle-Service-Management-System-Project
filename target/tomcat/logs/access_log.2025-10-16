@@ -1,1 +1,11 @@
 127.0.0.1 - - [16/Oct/2025:00:45:45 +0530] "GET / HTTP/1.1" 404 - http-bio-8080-exec-1 0
+127.0.0.1 - - [16/Oct/2025:00:52:42 +0530] "GET / HTTP/1.1" 404 - http-bio-8080-exec-5 0
+127.0.0.1 - - [16/Oct/2025:00:52:50 +0530] "GET / HTTP/1.1" 404 - http-bio-8080-exec-10 0
+127.0.0.1 - - [16/Oct/2025:01:03:11 +0530] "GET / HTTP/1.1" 404 - http-bio-8080-exec-4 0
+127.0.0.1 - - [16/Oct/2025:01:03:17 +0530] "GET / HTTP/1.1" 404 - http-bio-8080-exec-7 0
+0:0:0:0:0:0:0:1 - - [16/Oct/2025:01:13:24 +0530] "GET /VehicleServiceSystem/ HTTP/1.1" 304 - http-bio-8080-exec-1 31
+0:0:0:0:0:0:0:1 - - [16/Oct/2025:01:13:24 +0530] "GET /VehicleServiceSystem/styles/common.css HTTP/1.1" 304 - http-bio-8080-exec-2 4
+0:0:0:0:0:0:0:1 - - [16/Oct/2025:01:13:25 +0530] "GET /VehicleServiceSystem/customers HTTP/1.1" 500 3429 http-bio-8080-exec-3 11
+0:0:0:0:0:0:0:1 - - [16/Oct/2025:01:13:49 +0530] "GET /VehicleServiceSystem/vehicles HTTP/1.1" 500 3326 http-bio-8080-exec-4 4
+0:0:0:0:0:0:0:1 - - [16/Oct/2025:01:14:03 +0530] "GET /VehicleServiceSystem/manage_mechanic.html HTTP/1.1" 304 - http-bio-8080-exec-5 4
+0:0:0:0:0:0:0:1 - - [16/Oct/2025:01:14:48 +0530] "GET /VehicleServiceSystem/services HTTP/1.1" 500 3325 http-bio-8080-exec-6 10
