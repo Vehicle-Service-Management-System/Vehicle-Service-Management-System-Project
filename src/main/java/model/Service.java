@@ -1,14 +1,14 @@
 package model;
 
 public class Service {
-    private int serviceId;
+    private String serviceId;
     private String vehicleReg;
     private String serviceType;
     private String mechanic;
     private String serviceDate;
     private double cost;
 
-    public Service(int serviceId, String vehicleReg, String serviceType, String mechanic, String serviceDate, double cost) {
+    public Service(String serviceId, String vehicleReg, String serviceType, String mechanic, String serviceDate, double cost) {
         this.serviceId = serviceId;
         this.vehicleReg = vehicleReg;
         this.serviceType = serviceType;
@@ -16,7 +16,7 @@ public class Service {
         this.serviceDate = serviceDate;
         this.cost = cost;
     }
-    public int getServiceId(){
+    public String getServiceId(){
         return serviceId;
     }
     public String getVehicleReg(){
@@ -75,7 +75,7 @@ public class Service {
         if (parts.length != 6) {
             throw new IllegalArgumentException("Invalid CSV format for Service");
         }
-        int serviceId = Integer.parseInt(parts[0]);
+        String serviceId = parts[0];
         String vehicleReg = parts[1];
         String serviceType = parts[2];
         String mechanic = parts[3];

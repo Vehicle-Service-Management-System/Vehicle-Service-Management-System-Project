@@ -7,7 +7,7 @@ public class Vehicle {
     private int year;   
     private String ownerName;
     private String ownerContact;
-    private int ownerId;
+    private String ownerId;
 
     public Vehicle(String registrationNumber, String make, String model, int year, String ownerName, String ownerContact) {
         this.registrationNumber = registrationNumber;
@@ -17,7 +17,7 @@ public class Vehicle {
         this.ownerName = ownerName;
         this.ownerContact = ownerContact;
     }
-    public Vehicle(String registrationNumber2, String make2, String model2, int year2, int ownerId) {
+    public Vehicle(String registrationNumber2, String make2, String model2, int year2, String ownerId) {
         this.registrationNumber = registrationNumber2;
         this.make = make2;
         this.model = model2;
@@ -39,7 +39,7 @@ public class Vehicle {
     public String getOwnerName() {
         return ownerName;
     }
-    public int getOwnerId() {
+    public String getOwnerId() {
         return ownerId;
     }
     public void setMake(String make) {

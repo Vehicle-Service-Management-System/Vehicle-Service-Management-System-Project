@@ -19,8 +19,7 @@ public class CustomerServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        String filePath = getServletContext().getRealPath("/WEB-INF/data/customers.csv");
-        this.customerManager = new CustomerManager(filePath);
+        this.customerManager = new CustomerManager();
     }
 
     @Override
@@ -87,7 +86,7 @@ public class CustomerServlet extends HttpServlet {
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        String id = request.getParameter("id");
         Customer existingCustomer = customerManager.getCustomerById(id);
         request.setAttribute("customer", existingCustomer);
         RequestDispatcher dispatcher = request.getRequestDispatcher("customer-form.jsp");
@@ -104,7 +103,7 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void updateCustomer(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        String id = request.getParameter("id");
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
@@ -114,7 +113,7 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        String id = request.getParameter("id");
         customerManager.deleteCustomer(id);
         response.sendRedirect("customers?action=list");
     }
