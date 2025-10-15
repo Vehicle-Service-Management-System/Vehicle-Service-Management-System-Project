@@ -1,17 +1,17 @@
 package manager;
 
-import model.Customer;
-import util.DatabaseConnector;
-
-import java.io.IOException;
-import java.sql.*;
-import util.IdGenerator;
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.UUID;
-import java.util.List;
 import java.util.Map;
+
+import model.Customer;
+import util.DatabaseConnector;
+import util.IdGenerator;
 
 public class CustomerManager {
     private final Map<String, Customer> customers;

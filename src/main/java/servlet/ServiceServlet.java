@@ -2,12 +2,14 @@ package servlet;
 
 import java.io.IOException;
 import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import manager.ServiceManager;
 import manager.VehicleManager;
 import model.Service;
@@ -15,16 +17,13 @@ import model.Vehicle;
 
 @WebServlet("/services")
 public class ServiceServlet extends HttpServlet {
-
     private ServiceManager serviceManager;
     private VehicleManager vehicleManager;
 
     @Override
     public void init() throws ServletException {
-        String serviceFilePath = getServletContext().getRealPath("/WEB-INF/data/services.csv");
-        String vehicleFilePath = getServletContext().getRealPath("/WEB-INF/data/vehicles.csv");
-        this.serviceManager = new ServiceManager(serviceFilePath);
-        this.vehicleManager = new VehicleManager(vehicleFilePath);
+        this.serviceManager = new ServiceManager();
+        this.vehicleManager = new VehicleManager();
     }
 
     @Override
@@ -93,9 +92,8 @@ public class ServiceServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String id = request.getParameter("id"); // Get ID as String
         Service existingService = serviceManager.getServiceById(id);
         List<Vehicle> vehicleList = vehicleManager.getAllVehicles();
         request.setAttribute("service", existingService);
@@ -125,7 +123,7 @@ public class ServiceServlet extends HttpServlet {
     }
 
     private void updateService(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        String id = request.getParameter("id");
         String vehicleReg = request.getParameter("vehicleReg");
         String serviceType = request.getParameter("serviceType");
         String mechanic = request.getParameter("mechanic");
@@ -136,7 +134,7 @@ public class ServiceServlet extends HttpServlet {
     }
 
     private void deleteService(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        String id = request.getParameter("id");
         serviceManager.deleteService(id);
         response.sendRedirect("services?action=list");
     }

@@ -1,0 +1,15 @@
+manager\MechanicManager.class
+manager\VehicleManager.class
+manager\CustomerManager.class
+model\Vehicle.class
+servlet\CustomerServlet.class
+util\IdGenerator.class
+ui\Main.class
+manager\ServiceManager.class
+model\Service.class
+util\DatabaseConnector.class
+model\Mechanic.class
+servlet\ServiceServlet.class
+servlet\MechanicServlet.class
+model\Customer.class
+servlet\VehicleServlet.class

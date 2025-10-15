@@ -2,12 +2,14 @@ package servlet;
 
 import java.io.IOException;
 import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import manager.CustomerManager;
 import manager.VehicleManager;
 import model.Customer;
@@ -15,16 +17,13 @@ import model.Vehicle;
 
 @WebServlet("/vehicles")
 public class VehicleServlet extends HttpServlet {
-
     private VehicleManager vehicleManager;
     private CustomerManager customerManager;
 
     @Override
     public void init() throws ServletException {
-        String vehicleFilePath = getServletContext().getRealPath("/WEB-INF/data/vehicles.csv");
-        String customerFilePath = getServletContext().getRealPath("/WEB-INF/data/customers.csv");
-        this.vehicleManager = new VehicleManager(vehicleFilePath);
-        this.customerManager = new CustomerManager(customerFilePath);
+        this.vehicleManager = new VehicleManager();
+        this.customerManager = new CustomerManager();
     }
 
     @Override
@@ -104,21 +103,20 @@ public class VehicleServlet extends HttpServlet {
         String make = request.getParameter("make");
         String model = request.getParameter("model");
         int year = Integer.parseInt(request.getParameter("year"));
-        int ownerId = Integer.parseInt(request.getParameter("ownerId"));
+        String ownerId = request.getParameter("ownerId"); // Get ID as String
         vehicleManager.addVehicle(registrationNumber, make, model, year, ownerId);
         response.sendRedirect("vehicles?action=list");
     }
 
-    private void updateVehicle(HttpServletRequest request, HttpServletResponse response) throws IOException {
+     private void updateVehicle(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String registrationNumber = request.getParameter("registrationNumber");
         String make = request.getParameter("make");
         String model = request.getParameter("model");
         int year = Integer.parseInt(request.getParameter("year"));
-        int ownerId = Integer.parseInt(request.getParameter("ownerId"));
+        String ownerId = request.getParameter("ownerId"); // Get ID as String
         vehicleManager.updateVehicle(registrationNumber, make, model, year, ownerId);
         response.sendRedirect("vehicles?action=list");
     }
-
     private void deleteVehicle(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String registrationNumber = request.getParameter("registrationNumber");
         vehicleManager.deleteVehicle(registrationNumber);

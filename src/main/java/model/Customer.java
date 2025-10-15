@@ -1,20 +1,20 @@
 package model;
 
 public class Customer {
-    private int id;
+    private String id;
     private String name;
     private String email;
     private String phoneNumber;
     private String address;
 
-    public Customer(int id, String name, String email, String phoneNumber, String address ){
+    public Customer(String id, String name, String email, String phoneNumber, String address ){
         this.id =id;
         this.name=name;
         this.email=email;
         this.phoneNumber=phoneNumber;
         this.address=address;
     }
-    public int getId(){
+    public String getId(){
         return id;
     }
     public String getName(){
@@ -66,7 +66,7 @@ public class Customer {
         try {   
         String[] parts = csvString.split(",");
         if(parts.length == 5){
-            int id = Integer.parseInt(parts[0]);
+            String id = parts[0];
             String name = parts[1];
             String email = parts[2];
             String phoneNumber = parts[3];

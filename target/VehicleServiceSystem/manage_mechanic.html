@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Vehicle Service Management System - Manage Mechanic</title>
+        <link rel="stylesheet" href="styles/manage_customer.css"> 
+        <link rel="stylesheet" href="styles/common.css">
+        <link rel="icon" type="image/x-icon" href="images/vehicare-logo.ico">
+    </head>
+    <body>
+        <header>
+            <a class="logo-text-container" href="index.html">
+                <img src="images/vehicare-logo.png">
+                <label>VEHICARE</label>
+            </a>
+            <div class="menu-icons-container">
+                <div class="menu-icon">
+                    <img src="images/user.svg">
+                    <label>Customers</label>
+                </div>
+                <div class="menu-icon">
+                    <img src="images/sports-car.svg">
+                    <label>Vehicles</label>
+                </div>
+                <div class="menu-icon">
+                    <img src="images/repair-tool.svg">
+                    <label>Services</label>
+                </div>
+                <div class="menu-icon">
+                    <img src="images/history.svg">
+                    <label>History</label>
+                </div>
+            </div>
+            <div class="account-username-container">
+                <label>Kasinathan</label>
+                <img src="images/human.svg">
+            </div>
+        </header>
+
+        <div class="form-container">
+        <h2>Mechanic Info</h2>
+        <form id="registrationForm" action="registerMechanic" method="post">
+
+            <div class="form-content">
+                <label for="mechanicId">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M560-440h200v-80H560v80Zm0-120h200v-80H560v80ZM200-320h320v-22q0-45-44-71.5T360-440q-72 0-116 26.5T200-342v22Zm160-160q33 0 56.5-23.5T440-560q0-33-23.5-56.5T360-640q-33 0-56.5 23.5T280-560q0 33 23.5 56.5T480-560ZM160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-480H160v480Zm0 0v-480 480Z"/></svg>
+                </label>
+                <input type="text" id="mechanicId" name="id" required placeholder="Mechanic ID">
+            </div>
+
+            <div class="form-content">
+                <label for="mechanicName">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/></svg>
+                </label>
+                <input type="text" id="name" name="name" required placeholder="Mechanic Name">
+            </div>
+
+            <div class="form-content">
+                <label for="phoneNumber">#</label>
+                <input type="text" id="phoneNumber" name="phoneNumber" required placeholder="Phone Number">
+            </div>
+
+            <div class="form-content">
+                <label for="address">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
+                </label>
+                <input type="text" id="address" name="address" required placeholder="Address">   
+            </div>
+
+            <button type="submit">Register Mechanic</button>
+            <p id="error-message"></p>
+        </form>
+    </div>
+    <div>
+        <a href="displayMechanics">View All Mechanics</a> 
+    </div>
+    </body>
+</html>

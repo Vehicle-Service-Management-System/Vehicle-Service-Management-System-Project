@@ -1,13 +1,17 @@
 package manager;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
 import model.Mechanic;
 import util.DatabaseConnector;
 import util.IdGenerator;
-import java.sql.*;
-import java.util.Collection;
-import java.util.HashMap;
-
-import java.util.Map;
 
 public class MechanicManager {
     private final Map<String, Mechanic> mechanicMap;

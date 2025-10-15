@@ -8,7 +8,6 @@ import manager.CustomerManager;
 import manager.MechanicManager;
 import manager.ServiceManager;
 import manager.VehicleManager;
-
 import model.Customer;
 import model.Mechanic;
 import model.Service;

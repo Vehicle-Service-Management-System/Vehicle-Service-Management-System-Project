@@ -3,18 +3,19 @@ package servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import manager.CustomerManager;
 import model.Customer;
 
 @WebServlet("/customers")
 public class CustomerServlet extends HttpServlet {
-
     private CustomerManager customerManager;
 
     @Override
@@ -84,15 +85,13 @@ public class CustomerServlet extends HttpServlet {
     }
 
 
-    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String id = request.getParameter("id");
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String id = request.getParameter("id"); // Get ID as String
         Customer existingCustomer = customerManager.getCustomerById(id);
         request.setAttribute("customer", existingCustomer);
         RequestDispatcher dispatcher = request.getRequestDispatcher("customer-form.jsp");
         dispatcher.forward(request, response);
     }
-
     private void addCustomer(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
@@ -102,8 +101,8 @@ public class CustomerServlet extends HttpServlet {
         response.sendRedirect("customers?action=list");
     }
 
-    private void updateCustomer(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String id = request.getParameter("id");
+     private void updateCustomer(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String id = request.getParameter("id"); // Get ID as String
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
@@ -112,8 +111,8 @@ public class CustomerServlet extends HttpServlet {
         response.sendRedirect("customers?action=list");
     }
 
-    private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String id = request.getParameter("id");
+     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String id = request.getParameter("id"); // Get ID as String
         customerManager.deleteCustomer(id);
         response.sendRedirect("customers?action=list");
     }
