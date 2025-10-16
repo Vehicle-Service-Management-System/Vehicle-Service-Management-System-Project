@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Vehicle Form</title>
+    <title>Edit Vehicle</title>
     <link rel="stylesheet" href="styles/common.css">
     <link rel="stylesheet" href="styles/manage_customer.css"> </head>
 <body>
@@ -11,22 +11,14 @@
         </header>
 
     <div class="form-container">
-        <h1>
-            <c:if test="${vehicle != null}">Edit Vehicle</c:if>
-            <c:if test="${vehicle == null}">Add New Vehicle</c:if>
-        </h1>
-
+        <h1>Edit Vehicle Details</h1>
+        
         <form action="vehicles" method="post">
-            <c:if test="${vehicle != null}">
-                <input type="hidden" name="action" value="update"/>
-            </c:if>
-            <c:if test="${vehicle == null}">
-                <input type="hidden" name="action" value="add"/>
-            </c:if>
-
+            <input type="hidden" name="action" value="update"/>
+            
             <div class="form-content">
-                <label for="registrationNumber">Registration No.</label>
-                <input type="text" id="registrationNumber" name="registrationNumber" required value="<c:out value='${vehicle.registrationNumber}' />" <c:if test="${vehicle != null}">readonly</c:if>>
+                <label for="registrationNumber">Registration No. (Read-Only)</label>
+                <input type="text" id="registrationNumber" name="registrationNumber" readonly value="<c:out value='${vehicle.registrationNumber}' />">
             </div>
 
             <div class="form-content">
@@ -47,7 +39,6 @@
             <div class="form-content">
                 <label for="ownerId">Owner</label>
                 <select id="ownerId" name="ownerId" required>
-                    <option value="">-- Select an Owner --</option>
                     <c:forEach var="customer" items="${customerList}">
                         <option value="${customer.id}" <c:if test="${customer.id == vehicle.ownerId}">selected</c:if>>
                             <c:out value="${customer.name}" /> (ID: <c:out value="${customer.id}" />)
@@ -55,8 +46,8 @@
                     </c:forEach>
                 </select>
             </div>
-
-            <button type="submit">Save Vehicle</button>
+            
+            <button type="submit">Update Vehicle</button>
         </form>
     </div>
 </body>

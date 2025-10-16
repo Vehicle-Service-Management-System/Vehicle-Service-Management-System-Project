@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import model.Customer;
@@ -42,7 +44,7 @@ public class CustomerManager {
 
     }
 
-    public void addCustomer(String name, String email, String phoneNumber, String address) {
+    public String addCustomer(String name, String email, String phoneNumber, String address) {
         String id = IdGenerator.generateShortId();
         String sql = "INSERT INTO customers (id, name, email, phone_number, address) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnector.getConnection();
@@ -53,8 +55,14 @@ public class CustomerManager {
             pstmt.setString(4, phoneNumber);
             pstmt.setString(5, address);
             pstmt.executeUpdate();
+            
+            Customer newCustomer = new Customer(id, name, email, phoneNumber, address);
+            customers.put(id, newCustomer);
+
+            return id;
         } catch (SQLException e) {
             System.err.println("CRITICAL ERROR: Could not add customer to database: " + e.getMessage());
+            return null;
         }
     }
 
@@ -83,6 +91,36 @@ public class CustomerManager {
             System.err.println("CRITICAL ERROR: Could not update customer in database: " + e.getMessage());
         }
     }
+
+    // Add this method to CustomerManager.java
+
+public List<Customer> searchCustomers(String searchTerm) {
+    List<Customer> foundCustomers = new ArrayList<>();
+    // The ILIKE operator is for case-insensitive searching. The '%' is a wildcard.
+    String sql = "SELECT * FROM customers WHERE name ILIKE ? OR email ILIKE ? OR phone_number ILIKE ?";
+
+    try (Connection conn = DatabaseConnector.getConnection();
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+        String query = "%" + searchTerm + "%"; // Wrap the search term in wildcards
+        pstmt.setString(1, query);
+        pstmt.setString(2, query);
+        pstmt.setString(3, query);
+
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()) {
+            String id = rs.getString("id");
+            String name = rs.getString("name");
+            String email = rs.getString("email");
+            String phone = rs.getString("phone_number");
+            String address = rs.getString("address");
+            foundCustomers.add(new Customer(id, name, email, phone, address));
+        }
+    } catch (SQLException e) {
+        System.err.println("Error searching customers: " + e.getMessage());
+    }
+    return foundCustomers;
+}
 
     public void deleteCustomer(String id) {
         String sql = "DELETE FROM customers WHERE id = ?";

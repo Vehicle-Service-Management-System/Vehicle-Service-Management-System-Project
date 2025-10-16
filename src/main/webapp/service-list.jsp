@@ -12,17 +12,22 @@
         </header>
 
     <main class="main-container">
-        <h1>All Services</h1>
-        <p><a href="services?action=new" class="button">Add New Service</a></p>
+        <h1>All Service Records</h1>
 
+        <form action="services" method="get" class="search-form">
+            <input type="hidden" name="action" value="search">
+            <input type="text" name="query" placeholder="Search by vehicle reg, service type..." class="search-input">
+            <button type="submit" class="button">Search</button>
+            <a href="services" class="button">Show All</a>
+        </form>
+        
         <table class="data-table">
             <thead>
                 <tr>
                     <th>Service ID</th>
                     <th>Vehicle Reg</th>
                     <th>Service Type</th>
-                    <th>Mechanic</th>
-                    <th>Service Date</th>
+                    <th>Mechanic ID</th> <th>Service Date</th>
                     <th>Cost</th>
                     <th>Actions</th>
                 </tr>
@@ -33,8 +38,7 @@
                         <td><c:out value="${service.id}" /></td>
                         <td><c:out value="${service.vehicleReg}" /></td>
                         <td><c:out value="${service.serviceType}" /></td>
-                        <td><c:out value="${service.mechanic}" /></td>
-                        <td><c:out value="${service.serviceDate}" /></td>
+                        <td><c:out value="${service.mechanicId}" /></td> <td><c:out value="${service.serviceDate}" /></td>
                         <td><c:out value="${service.cost}" /></td>
                         <td>
                             <a href="services?action=edit&id=${service.id}">Edit</a>
