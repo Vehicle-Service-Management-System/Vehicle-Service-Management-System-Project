@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Customer Form</title>
+    <title>Edit Customer</title>
     <link rel="stylesheet" href="styles/common.css">
     <link rel="stylesheet" href="styles/manage_customer.css">
 </head>
@@ -13,19 +13,11 @@
         </header>
 
     <div class="form-container">
-        <h1>
-            <c:if test="${customer != null}">Edit Customer</c:if>
-            <c:if test="${customer == null}">Add New Customer</c:if>
-        </h1>
+        <h1>Edit Customer Details</h1>
         
         <form action="customers" method="post">
-            <c:if test="${customer != null}">
-                <input type="hidden" name="action" value="update"/>
-                <input type="hidden" name="id" value="<c:out value='${customer.id}' />" />
-            </c:if>
-            <c:if test="${customer == null}">
-                <input type="hidden" name="action" value="add"/>
-            </c:if>
+            <input type="hidden" name="action" value="update"/>
+            <input type="hidden" name="id" value="<c:out value='${customer.id}' />" />
 
             <div class="form-content">
                 <label for="name">Name</label>
@@ -47,7 +39,7 @@
                 <input type="text" id="address" name="address" required value="<c:out value='${customer.address}' />">
             </div>
             
-            <button type="submit">Save Customer</button>
+            <button type="submit">Update Customer</button>
         </form>
     </div>
 </body>

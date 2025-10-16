@@ -23,41 +23,43 @@ public class CustomerServlet extends HttpServlet {
         this.customerManager = new CustomerManager();
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+// In CustomerServlet.java's doGet method
+@Override
+protected void doGet(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
 
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "list";
-        }
-
-        switch (action) {
-            case "new":
-                showNewForm(request, response);
-                break;
-            case "edit":
-                showEditForm(request, response);
-                break;
-            default:
-                listCustomers(request, response);
-                break;
-        }
+    String action = request.getParameter("action");
+    if (action == null) {
+        action = "list";
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    switch (action) {
+        case "new":
+            // This case is no longer used but can be left for now
+            showNewForm(request, response);
+            break;
+        case "edit":
+            showEditForm(request, response);
+            break;
+        case "search": // NEW: Handle the search request
+            searchCustomers(request, response);
+            break;
+        default: // "list"
+            listCustomers(request, response);
+            break;
+    }
+}
 
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "list";
-        }
 
+@Override
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+
+    String action = request.getParameter("action");
+
+    // No need for a default, as POST requests are for specific actions.
+    if (action != null) {
         switch (action) {
-            case "add":
-                addCustomer(request, response);
-                break;
             case "update":
                 updateCustomer(request, response);
                 break;
@@ -65,9 +67,24 @@ public class CustomerServlet extends HttpServlet {
                 deleteCustomer(request, response);
                 break;
             default:
+                // If an unknown action is posted, just show the list.
                 listCustomers(request, response);
                 break;
         }
+    } else {
+        listCustomers(request, response);
+    }
+}
+
+    // Add this new private method to CustomerServlet.java
+    private void searchCustomers(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    String query = request.getParameter("query");
+    List<Customer> customerList = customerManager.searchCustomers(query); // Call the new manager method
+
+    request.setAttribute("customerList", customerList); // Put the results in the request
+    RequestDispatcher dispatcher = request.getRequestDispatcher("customer-list.jsp");
+    dispatcher.forward(request, response); // Forward back to the same list page
     }
 
     private void listCustomers(HttpServletRequest request, HttpServletResponse response)

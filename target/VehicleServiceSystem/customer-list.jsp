@@ -12,8 +12,14 @@
         </header>
 
     <main class="main-container">
-        <h1>All Customers</h1>
-        <p><a href="customers?action=new" class="button">Add New Customer</a></p>
+        <h1>Customer Records</h1>
+
+        <form action="customers" method="get" class="search-form">
+            <input type="hidden" name="action" value="search">
+            <input type="text" name="query" placeholder="Search by name, email, or phone..." class="search-input">
+            <button type="submit" class="button">Search</button>
+            <a href="customers" class="button">Show All</a>
+        </form>
         
         <table class="data-table">
             <thead>
@@ -40,7 +46,7 @@
                             <form action="customers" method="post" style="display:inline;">
                                 <input type="hidden" name="action" value="delete">
                                 <input type="hidden" name="id" value="${customer.id}">
-                                <button type="submit" class="link-button" onclick="return confirm('Are you sure?')">Delete</button>
+                                <button type="submit" class="link-button" onclick="return confirm('Are you sure you want to delete this customer?')">Delete</button>
                             </form>
                         </td>
                     </tr>

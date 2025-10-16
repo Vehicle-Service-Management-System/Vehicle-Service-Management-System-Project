@@ -15,7 +15,7 @@
         
         <form action="services" method="post">
             <input type="hidden" name="action" value="update"/>
-            <input type="hidden" name="id" value="<c:out value='${service.id}' />" />
+            <input type="hidden" name="id" value="<c:out value='${service.serviceId}' />" />
 
             <div class="form-content">
                 <label for="vehicleReg">Vehicle</label>
@@ -52,7 +52,7 @@
 
             <div class="form-content">
                 <label for="cost">Cost</label>
-                <input type="number" step="0.01" id="cost" name="cost" required value="<c:out value='${service.cost}' />">
+                <input type="number" step="100" id="cost" name="cost" required value="<c:out value='${service.cost}' />">
             </div>
             
             <button type="submit">Update Service</button>

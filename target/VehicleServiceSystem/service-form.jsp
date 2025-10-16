@@ -3,33 +3,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Service Form</title>
+    <title>Edit Service Record</title>
     <link rel="stylesheet" href="styles/common.css">
-    <link rel="stylesheet" href="styles/manage_customer.css">
-</head>
+    <link rel="stylesheet" href="styles/manage_customer.css"> </head>
 <body>
     <header>
         </header>
 
     <div class="form-container">
-        <h1>
-            <c:if test="${service != null}">Edit Service Record</c:if>
-            <c:if test="${service == null}">Book New Service</c:if>
-        </h1>
-
+        <h1>Edit Service Record</h1>
+        
         <form action="services" method="post">
-            <c:if test="${service != null}">
-                <input type="hidden" name="action" value="update"/>
-                <input type="hidden" name="id" value="<c:out value='${service.serviceId}' />" />
-            </c:if>
-            <c:if test="${service == null}">
-                <input type="hidden" name="action" value="add"/>
-            </c:if>
+            <input type="hidden" name="action" value="update"/>
+            <input type="hidden" name="id" value="<c:out value='${service.serviceId}' />" />
 
             <div class="form-content">
                 <label for="vehicleReg">Vehicle</label>
                 <select id="vehicleReg" name="vehicleReg" required>
-                    <option value="">-- Select a Vehicle --</option>
                     <c:forEach var="vehicle" items="${vehicleList}">
                         <option value="${vehicle.registrationNumber}" <c:if test="${vehicle.registrationNumber == service.vehicleReg}">selected</c:if>>
                             <c:out value="${vehicle.registrationNumber}" /> (<c:out value="${vehicle.make}" /> <c:out value="${vehicle.model}" />)
@@ -44,8 +34,15 @@
             </div>
 
             <div class="form-content">
-                <label for="mechanic">Mechanic</label>
-                <input type="text" id="mechanic" name="mechanic" required value="<c:out value='${service.mechanic}' />">
+                <label for="mechanicId">Mechanic</label>
+                <select id="mechanicId" name="mechanicId" required>
+                    <option value="">-- Select a Mechanic --</option>
+                    <c:forEach var="mechanic" items="${mechanicList}">
+                        <option value="${mechanic.id}" <c:if test="${mechanic.id == service.mechanicId}">selected</c:if>>
+                            <c:out value="${mechanic.name}" />
+                        </option>
+                    </c:forEach>
+                </select>
             </div>
 
             <div class="form-content">
@@ -55,10 +52,10 @@
 
             <div class="form-content">
                 <label for="cost">Cost</label>
-                <input type="number" step="0.01" id="cost" name="cost" required value="<c:out value='${service.cost}' />">
+                <input type="number" step="100" id="cost" name="cost" required value="<c:out value='${service.cost}' />">
             </div>
-
-            <button type="submit">Save Service</button>
+            
+            <button type="submit">Update Service</button>
         </form>
     </div>
 </body>

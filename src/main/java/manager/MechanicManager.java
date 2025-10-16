@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import model.Mechanic;
@@ -91,6 +93,29 @@ public class MechanicManager {
             System.err.println("Error deleting mechanic: " + e.getMessage());
         }
     }
+
+    public List<Mechanic> searchMechanics(String searchTerm) {
+    List<Mechanic> foundMechanics = new ArrayList<>();
+    // Use ILIKE for case-insensitive search on the name.
+    String sql = "SELECT * FROM mechanics WHERE name ILIKE ?";
+
+    try (Connection conn = DatabaseConnector.getConnection();
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+        pstmt.setString(1, "%" + searchTerm + "%"); // Wrap in wildcards
+        ResultSet rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            String id = rs.getString("id");
+            String name = rs.getString("name");
+            boolean isAvailable = rs.getBoolean("is_available");
+            foundMechanics.add(new Mechanic(id, name, isAvailable));
+        }
+    } catch (SQLException e) {
+        System.err.println("Error searching mechanics: " + e.getMessage());
+    }
+    return foundMechanics;
+}
     
     public Mechanic getMechanicById(String id) {
         return mechanicMap.get(id);

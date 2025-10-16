@@ -69,22 +69,4 @@ public class Service {
         return "Service ID: " + serviceId + ", Vehicle Reg: " + vehicleReg + ", Service Type: " + serviceType + ", Mechanic: " + mechanic + ", Service Date: " + serviceDate + ", Cost: " + cost;
     }
 
-    public static Service fromCSV(String csv) {
-        try {
-        String[] parts = csv.split(",");
-        if (parts.length != 6) {
-            throw new IllegalArgumentException("Invalid CSV format for Service");
-        }
-        String serviceId = parts[0];
-        String vehicleReg = parts[1];
-        String serviceType = parts[2];
-        String mechanic = parts[3];
-        String serviceDate = parts[4];
-        double cost = Double.parseDouble(parts[5]);
-        return new Service(serviceId, vehicleReg, serviceType, mechanic, serviceDate, cost);
-    } catch (NumberFormatException e) {
-        throw new IllegalArgumentException("Invalid number format in CSV for Service", e);
-    }
-    }
-
 }

@@ -60,24 +60,6 @@ public class Customer {
     }
     public String toSummaryString(){
         return "Customer ID: " + id + ", Name: " + name;
-    }
-
-    public static Customer fromCSV(String csvString){
-        try {   
-        String[] parts = csvString.split(",");
-        if(parts.length == 5){
-            String id = parts[0];
-            String name = parts[1];
-            String email = parts[2];
-            String phoneNumber = parts[3];
-            String address = parts[4];
-            return new Customer(id, name, email, phoneNumber, address);
-        }
-        return null;    
-    }   catch (Exception e) {
-        e.printStackTrace();
-        return null;
-    }
     }   
     
 }

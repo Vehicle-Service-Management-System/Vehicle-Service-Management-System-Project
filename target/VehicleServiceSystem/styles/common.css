@@ -101,3 +101,93 @@ header{
     width: 200px;
     cursor: pointer;
 }
+/* === ADD THIS CODE TO THE BOTTOM OF common.css === */
+
+/* Main Content Container for List Pages */
+main.main-container {
+    background-color: rgba(30, 30, 30, 0.92); /* Dark, 92% opaque background */
+    color: #f0f0f0; /* Light gray text for readability */
+    padding: 25px;
+    margin: 30px auto;
+    border-radius: 10px;
+    max-width: 90%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid #444;
+}
+
+/* Data Table Styling */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.data-table th, .data-table td {
+    border: 1px solid #555;
+    padding: 12px;
+    text-align: left;
+}
+
+.data-table th {
+    background-color: #333;
+    color: #ffad48; /* Use your theme's accent color */
+    font-weight: 600;
+}
+
+/* Make links and buttons in the table stand out */
+.data-table a {
+    color: #70c1ff; /* A bright, clickable blue */
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.data-table a:hover {
+    text-decoration: underline;
+}
+
+.link-button {
+    background: none;
+    border: none;
+    color: #ff8080; /* A reddish color for delete */
+    cursor: pointer;
+    font-size: 1em;
+    font-family: 'Poppins';
+    padding: 0;
+}
+
+.link-button:hover {
+    text-decoration: underline;
+}
+
+/* Search Form Styling */
+.search-form {
+    margin-bottom: 25px;
+    display: flex;
+    gap: 10px;
+}
+
+.search-input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #333;
+    color: white;
+    font-size: 1em;
+}
+
+/* Generic button style that matches your theme */
+.button {
+    background-color: #ffad48;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    color: #6e2b04;
+    cursor: pointer;
+    transition: background-color .15s;
+}
+
+.button:hover {
+    background-color: #e69c40;
+}

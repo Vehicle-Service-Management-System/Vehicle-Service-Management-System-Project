@@ -35,17 +35,17 @@
             <tbody>
                 <c:forEach var="service" items="${serviceList}">
                     <tr>
-                        <td><c:out value="${service.id}" /></td>
+                        <td><c:out value="${service.serviceId}" /></td>
                         <td><c:out value="${service.vehicleReg}" /></td>
                         <td><c:out value="${service.serviceType}" /></td>
                         <td><c:out value="${service.mechanicId}" /></td> <td><c:out value="${service.serviceDate}" /></td>
                         <td><c:out value="${service.cost}" /></td>
                         <td>
-                            <a href="services?action=edit&id=${service.id}">Edit</a>
+                            <a href="services?action=edit&id=${service.serviceId}">Edit</a>
                             &nbsp;|&nbsp;
                             <form action="services" method="post" style="display:inline;">
                                 <input type="hidden" name="action" value="delete">
-                                <input type="hidden" name="id" value="${service.id}">
+                                <input type="hidden" name="id" value="${service.serviceId}">
                                 <button type="submit" class="link-button" onclick="return confirm('Are you sure?')">Delete</button>
                             </form>
                         </td>

@@ -1,0 +1,46 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Service Report for ${reportDate}</title>
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/manage_customer.css">
+</head>
+<body>
+    <header>
+        </header>
+    <main class="main-container">
+        <h1>Service Report for: <c:out value="${reportDate}" /></h1>
+
+        <c:if test="${empty reportList}">
+            <p>No services were recorded on this date.</p>
+        </c:if>
+
+        <c:if test="${not empty reportList}">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Service ID</th>
+                        <th>Vehicle Reg</th>
+                        <th>Service Type</th>
+                        <th>Mechanic ID</th>
+                        <th>Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="service" items="${reportList}">
+                        <tr>
+                            <td><c:out value="${service.id}" /></td>
+                            <td><c:out value="${service.vehicleReg}" /></td>
+                            <td><c:out value="${service.serviceType}" /></td>
+                            <td><c:out value="${service.mechanicId}" /></td>
+                            <td><c:out value="${service.cost}" /></td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </c:if>
+    </main>
+</body>
+</html>

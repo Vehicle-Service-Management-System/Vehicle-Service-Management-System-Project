@@ -5,18 +5,9 @@ public class Vehicle {
     private String make;
     private String model;
     private int year;   
-    private String ownerName;
-    private String ownerContact;
     private String ownerId;
 
-    public Vehicle(String registrationNumber, String make, String model, int year, String ownerName, String ownerContact) {
-        this.registrationNumber = registrationNumber;
-        this.make = make;
-        this.model = model;
-        this.year = year;
-        this.ownerName = ownerName;
-        this.ownerContact = ownerContact;
-    }
+    
     public Vehicle(String registrationNumber2, String make2, String model2, int year2, String ownerId) {
         this.registrationNumber = registrationNumber2;
         this.make = make2;
@@ -36,9 +27,7 @@ public class Vehicle {
     public int getYear() {
         return year;
     }
-    public String getOwnerName() {
-        return ownerName;
-    }
+
     public String getOwnerId() {
         return ownerId;
     }
@@ -51,21 +40,15 @@ public class Vehicle {
     public void setYear(int year) {
         this.year = year;
     }
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
-    }
-    public void setOwnerContact(String ownerContact) {
-        this.ownerContact = ownerContact;
-    }
     @Override
     public String toString() {
-        return "Registration Number: " + registrationNumber + ", Make: " + make + ", Model: " + model + ", Year: " + year + ", Owner Name: " + ownerName + ", Owner Contact: " + ownerContact;
+        return "Registration Number: " + registrationNumber + ", Make: " + make + ", Model: " + model + ", Year: " + year + ",Owner ID: " + ownerId;
     }
     public String toFileString() {
-        return registrationNumber + "," + make + "," + model + "," + year + "," + ownerName + "," + ownerContact;
+        return registrationNumber + "," + make + "," + model + "," + year + "," + ownerId;
     }
     public String toDisplayString() {
-        return "Registration Number: " + registrationNumber + "\nMake: " + make + "\nModel: " + model + "\nYear: " + year + "\nOwner Name: " + ownerName + "\nOwner Contact: " + ownerContact;
+        return "Registration Number: " + registrationNumber + "\nMake: " + make + "\nModel: " + model + "\nYear: " + year + "\nOwner ID:"+ownerId;
     }
     public String toShortString() {
         return "Reg No: " + registrationNumber + ", Make: " + make + ", Model: " + model;
@@ -76,26 +59,6 @@ public class Vehicle {
     public String toSummString() {
         return registrationNumber + " (" + make + " " + model + ", " + year + ")";
     }
-    public static Vehicle fromCSV(String csvString) {
-        try {
-        String[] parts = csvString.split(",");
-        if (parts.length == 6) {
-            String registrationNumber = parts[0];
-            String make = parts[1];
-            String model = parts[2];
-            int year = Integer.parseInt(parts[3]);
-            String ownerName = parts[4];
-            String ownerContact = parts[5];
-            return new Vehicle(registrationNumber, make, model, year, ownerName, ownerContact);
-        }
-        return null;
-    } catch (Exception e) {
-        e.printStackTrace();
-        return null;
-    }
-}
-   public String toCSV() {
-    return registrationNumber + "," + make + "," + model + "," + year + "," + ownerId;
-}
+    
 
 }   
