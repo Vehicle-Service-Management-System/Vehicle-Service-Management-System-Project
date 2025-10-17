@@ -8,7 +8,33 @@
     <link rel="stylesheet" href="styles/manage_service.css">
 </head>
 <body>
-    <header>
+     <header>
+            <div class="logo-text-container">
+                <img src="images/vehicare-logo.png">
+                <label>VEHICARE</label>
+            </div>
+            <div class="menu-icons-container">
+                <a href="customers" class="menu-icon" >
+                    <img src="images/user.svg">
+                    <label>Customers</label>
+                </a>
+                <a href="vehicles" class="menu-icon"  >
+                    <img src="images/sports-car.svg">
+                    <label>Vehicles</label>
+                </a>
+                <a href="services" class="menu-icon" style="background-color: #ffad48;">
+                    <img src="images/repair-tool.svg">
+                    <label>Services</label>
+                </a>
+                <a href="history-search.jsp" class="menu-icon" >
+                    <img src="images/history.svg">
+                    <label>History</label>
+                </a>
+            </div>
+            <div class="account-username-container">
+                <label>Kasinathan</label>
+                <img src="images/human.svg">
+            </div>
         </header>
 
     <main class="main-container">
@@ -18,7 +44,7 @@
             <input type="hidden" name="action" value="search">
             <input type="text" name="query" placeholder="Search by vehicle reg, service type..." class="search-input">
             <button type="submit" class="button">Search</button>
-            <a href="services" class="button">Show All</a>
+
         </form>
         
         <table class="data-table">

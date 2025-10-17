@@ -63,7 +63,7 @@
                         <td><c:out value="${vehicle.model}" /></td>
                         <td><c:out value="${vehicle.year}" /></td>
                         <td><c:out value="${vehicle.ownerId}" /></td> <td>
-                            <a href="vehicles?action=edit&reg=${vehicle.registrationNumber}">Edit</a>
+                            <a href="vehicle-form.jsp">Edit</a>
                             &nbsp;|&nbsp;
                             <form action="vehicles" method="post" style="display:inline;">
                                 <input type="hidden" name="action" value="delete">

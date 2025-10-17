@@ -26,7 +26,7 @@
                     <img src="images/repair-tool.svg">
                     <label>Services</label>
                 </a>
-                <a href="history-search.jsp" class="menu-icon" >
+                <a href="history-search.jsp" class="menu-icon" style="background-color: #ffad48;">
                     <img src="images/history.svg">
                     <label>History</label>
                 </a>
