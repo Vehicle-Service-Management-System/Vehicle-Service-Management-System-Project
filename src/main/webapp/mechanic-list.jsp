@@ -7,7 +7,33 @@
     <link rel="stylesheet" href="styles/common.css">
 </head>
 <body>
-    <header>
+          <header>
+            <div class="logo-text-container">
+                <img src="images/vehicare-logo.png">
+                <label>VEHICARE</label>
+            </div>
+            <div class="menu-icons-container">
+                <a href="customers" class="menu-icon">
+                    <img src="images/user.svg">
+                    <label>Customers</label>
+                </a>
+                <a href="vehicles" class="menu-icon">
+                    <img src="images/sports-car.svg">
+                    <label>Vehicles</label>
+                </a>
+                <a href="services" class="menu-icon">
+                    <img src="images/repair-tool.svg">
+                    <label>Services</label>
+                </a>
+                <a href="history-search.jsp" class="menu-icon">
+                    <img src="images/history.svg">
+                    <label>History</label>
+                </a>
+            </div>
+            <div class="account-username-container">
+                <label>Kasinathan</label>
+                <img src="images/human.svg">
+            </div>
         </header>
     <main class="main-container">
         <h1>Mechanic Records</h1>
@@ -16,7 +42,7 @@
             <input type="hidden" name="action" value="search">
             <input type="text" name="query" placeholder="Search by name..." class="search-input">
             <button type="submit" class="button">Search</button>
-            <a href="mechanics" class="button">Show All</a>
+            
         </form>
 
         <p><a href="mechanics?action=new" class="button">Add New Mechanic</a></p>

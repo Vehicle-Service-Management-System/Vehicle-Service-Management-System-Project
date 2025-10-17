@@ -153,10 +153,10 @@ private void showEditForm(HttpServletRequest request, HttpServletResponse respon
         String id = request.getParameter("id");
         String vehicleReg = request.getParameter("vehicleReg");
         String serviceType = request.getParameter("serviceType");
-        String mechanic = request.getParameter("mechanic");
+        String mechanicId = request.getParameter("mechanicId");
         String serviceDate = request.getParameter("serviceDate");
         double cost = Double.parseDouble(request.getParameter("cost"));
-        serviceManager.updateService(id, vehicleReg, serviceType, mechanic, serviceDate, cost);
+        serviceManager.updateService(id, vehicleReg, serviceType, mechanicId, serviceDate, cost);
         response.sendRedirect("services?action=list");
     }
 

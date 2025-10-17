@@ -51,20 +51,20 @@ public class ServiceManager {
     }
 }
 
-    public void addService(String vehicleReg, String serviceType, String mechanic, String serviceDate, double cost) {
+    public void addService(String vehicleReg, String serviceType, String mechanicId, String serviceDate, double cost) {
         String id = IdGenerator.generateShortId();
         String sql = "INSERT INTO services (id, vehicle_reg, service_type, mechanic, service_date, cost) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnector.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)){
                 pstmt.setString(1, id);
                 pstmt.setString(2, vehicleReg);
-                pstmt.setString(3, mechanic);
+                pstmt.setString(3, mechanicId);
                 pstmt.setString(4, serviceType);
                 pstmt.setDate(5, java.sql.Date.valueOf(serviceDate));
                 pstmt.setDouble(6, cost);
                 pstmt.executeUpdate();
 
-                Service service = new Service(id, vehicleReg, serviceType, mechanic, serviceDate, cost);
+                Service service = new Service(id, vehicleReg, serviceType, mechanicId, serviceDate, cost);
                 serviceMap.computeIfAbsent(serviceDate, k -> new ArrayList<>()).add(service);
             } catch(SQLException e){
                 System.err.println("CRITICAL: Failed to add service to database. " + e.getMessage());

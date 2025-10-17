@@ -25,7 +25,12 @@ header{
     height: 80px;
     width: 100%;
     background-color: rgb(146, 146, 146);
+    color: black;
     padding: 0px 10px;
+}
+
+.header a{
+    color: black
 }
 
 .logo-text-container{

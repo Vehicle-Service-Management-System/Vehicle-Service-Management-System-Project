@@ -16,7 +16,7 @@
             <input type="hidden" name="action" value="search">
             <input type="text" name="query" placeholder="Search by name..." class="search-input">
             <button type="submit" class="button">Search</button>
-            <a href="mechanics" class="button">Show All</a>
+            
         </form>
 
         <p><a href="mechanics?action=new" class="button">Add New Mechanic</a></p>

@@ -16,44 +16,60 @@ public class Service {
         this.serviceDate = serviceDate;
         this.cost = cost;
     }
-    public String getServiceId(){
+
+    // --- Getters ---
+    public String getServiceId() {
         return serviceId;
     }
-    public String getVehicleReg(){
+
+    public String getVehicleReg() {
         return vehicleReg;
     }
-    public String getServiceType(){
+
+    public String getServiceType() {
         return serviceType;
     }
-    public String getMechanic(){
+
+    public String getMechanicId() {
         return mechanicId;
     }
-    public String getServiceDate(){
+
+    public String getServiceDate() {
         return serviceDate;
     }
-    public double getCost(){
+
+    public double getCost() {
         return cost;
     }
-    public void setVehicleReg(String vehicleReg){
-        this.vehicleReg=vehicleReg;
+
+    // --- Setters ---
+    public void setVehicleReg(String vehicleReg) {
+        this.vehicleReg = vehicleReg;
     }
-    public void setServiceType(String serviceType){
-        this.serviceType=serviceType;
+
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
     }
-    public void setMechanic(String mechanicId){
-        this.mechanicId=mechanicId;
+
+    public void setMechanicId(String mechanicId) {
+        this.mechanicId = mechanicId;
     }
-    public void setServiceDate(String serviceDate){
-        this.serviceDate=serviceDate;
+
+    public void setServiceDate(String serviceDate) {
+        this.serviceDate = serviceDate;
     }   
-    public void setCost(double cost){
-        this.cost=cost;
+
+    public void setCost(double cost) {
+        this.cost = cost;
     }
+
     @Override
-    public String toString(){
-        return "Service Id:" + serviceId + ", Vehicle Reg:" + vehicleReg + ", Service Type:" + serviceType + ", Mechanic:" + mechanicId + ", Service Date:" + serviceDate + ", Cost:" + cost;
+    public String toString() {
+        return "Service [ID=" + serviceId + ", Vehicle Reg=" + vehicleReg + ", Type=" + serviceType + 
+               ", Mechanic ID=" + mechanicId + ", Date=" + serviceDate + ", Cost=" + cost + "]";
     }
-    public String toFileString(){
+
+     public String toFileString(){
         return serviceId + "," + vehicleReg + "," + serviceType + "," + mechanicId + "," + serviceDate + "," + cost;
     }
     public String toDisplayString(){
@@ -68,5 +84,5 @@ public class Service {
     public String toSummaryString(){
         return "Service ID: " + serviceId + ", Vehicle Reg: " + vehicleReg + ", Service Type: " + serviceType + ", Mechanic: " + mechanicId + ", Service Date: " + serviceDate + ", Cost: " + cost;
     }
-
+    
 }
