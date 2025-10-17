@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 import model.Service;
 import util.DatabaseConnector;
@@ -24,27 +25,31 @@ public class ServiceManager {
     }
 
     private void loadServices() {
-        String sql ="SELECT * FROM services";
-        try (Connection conn = DatabaseConnector.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+    serviceMap.clear();
+    String sql = "SELECT * FROM services ORDER BY service_date";
 
-            while (rs.next()) {
-                String id = rs.getString("id");
-                String vehicleReg = rs.getString("vehicle_reg");
-                String serviceType = rs.getString("service_type");
-                String mechanic = rs.getString("mechanic");
-                String serviceDate = rs.getString("service_date");
-                double cost = rs.getDouble("cost");
+    try (Connection conn = DatabaseConnector.getConnection();
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(sql)) {
 
-                Service service = new Service(id, vehicleReg, serviceType, mechanic, serviceDate, cost);
-                String date = service.getServiceDate();
+        while (rs.next()) {
+            String id = rs.getString("id");
+            String vehicleReg = rs.getString("vehicle_reg");
+            String mechanicId = rs.getString("mechanic_id"); // Corrected column name
+            String serviceType = rs.getString("service_type");
+            String serviceDate = rs.getString("service_date");
+            double cost = rs.getDouble("cost");
+
+            // Make sure your Service constructor accepts the mechanicId
+            Service service = new Service(id, vehicleReg, serviceType, mechanicId, serviceDate, cost);
+            String date = service.getServiceDate();
                 serviceMap.computeIfAbsent(date, k -> new ArrayList<>()).add(service);
-            }
-        } catch (SQLException e) {
-            System.err.println("CRITICAL: Failed to load service data from database. " + e.getMessage());
+
         }
+    } catch (SQLException e) {
+        System.err.println("CRITICAL ERROR: Could not load services from database: " + e.getMessage());
     }
+}
 
     public void addService(String vehicleReg, String serviceType, String mechanic, String serviceDate, double cost) {
         String id = IdGenerator.generateShortId();
@@ -147,11 +152,11 @@ public void updateService(String serviceId, String newVehicleReg, String newServ
 
     }
     public List<Service> getAllServices() {
-    List<Service> allServices = new ArrayList<>();
-    for (List<Service> dailyServices : serviceMap.values()) {
-        allServices.addAll(dailyServices);
-    }
-    return allServices;
+    // Reloads the cache from the database every time the full list is requested.
+    loadServices();
+    return new ArrayList<>(serviceMap.values().stream()
+        .flatMap(List::stream)
+        .collect(Collectors.toList()));
 }
 
 public Service getServiceById(String serviceId) {

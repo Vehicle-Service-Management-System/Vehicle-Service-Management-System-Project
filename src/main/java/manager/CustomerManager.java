@@ -23,27 +23,33 @@ public class CustomerManager {
         loadCustomers();
     }
 
-    private void loadCustomers() {
-        String sql ="SELECT * FROM customers";
-        try (Connection conn = DatabaseConnector.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+  private void loadCustomers() {
+    // Clear the existing cache to ensure we get fresh data
+    customers.clear();
+    
+    String sql = "SELECT * FROM customers";
 
-            while (rs.next()) {
-                String id = rs.getString("id");
-                String name = rs.getString("name");
-                String email = rs.getString("email");
-                String phoneNumber = rs.getString("phone_number");
-                String address = rs.getString("address");
-                Customer customer = new Customer(id, name, email, phoneNumber, address);
-                customers.put(id, customer);
-            }
-        } catch (SQLException e) {
-            System.err.println("CRITICAL ERROR: Could not load customers from database: " + e.getMessage());
+    try (Connection conn = DatabaseConnector.getConnection();
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(sql)) {
+            int count =0;
+        while (rs.next()) {
+            count++;
+
+            System.out.println(count);
+            String id = rs.getString("id");
+            String name = rs.getString("name");
+            String email = rs.getString("email");
+            String phone = rs.getString("phone_number");
+            String address = rs.getString("address");
+
+            Customer customer = new Customer(id, name, email, phone, address);
+            customers.put(id, customer);
         }
-
+    } catch (SQLException e) {
+        System.err.println("CRITICAL ERROR: Could not load customers from database: " + e.getMessage());
     }
-
+}
     public String addCustomer(String name, String email, String phoneNumber, String address) {
         String id = IdGenerator.generateShortId();
         String sql = "INSERT INTO customers (id, name, email, phone_number, address) VALUES (?, ?, ?, ?, ?)";
@@ -137,8 +143,10 @@ public List<Customer> searchCustomers(String searchTerm) {
         }
     }
     public Collection<Customer> getAllCustomers() {
-        return customers.values();
-    }
+    // Reload the cache from the database every time the full list is requested.
+    loadCustomers();
+    return customers.values();
+}
     public Customer getCustomerById(String id) {
         return customers.get(id);
     }

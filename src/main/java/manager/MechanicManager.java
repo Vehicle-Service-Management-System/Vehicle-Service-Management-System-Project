@@ -24,6 +24,7 @@ public class MechanicManager {
     }
 
     private void loadMechanics() {
+        mechanicMap.clear();
         String sql = "SELECT * FROM mechanics";
         try (Connection conn = DatabaseConnector.getConnection();
              Statement stmt = conn.createStatement();
@@ -121,7 +122,11 @@ public class MechanicManager {
         return mechanicMap.get(id);
     }
 
-    public Collection<Mechanic> getAllMechanics() {
-        return mechanicMap.values();
-    }
+    // In MechanicManager.java
+
+public Collection<Mechanic> getAllMechanics() {
+    // Reloads the cache from the database every time the list is requested.
+    loadMechanics();
+    return mechanicMap.values();
+}
 }

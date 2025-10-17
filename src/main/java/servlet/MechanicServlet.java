@@ -23,26 +23,42 @@ public class MechanicServlet extends HttpServlet {
         this.mechanicManager = new MechanicManager();
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "list";
-        }
+    // In MechanicServlet.java
 
-        switch (action) {
-            case "new":
-                showNewForm(request, response);
-                break;
-            case "edit":
-                showEditForm(request, response);
-                break;
-            default:
-                listMechanics(request, response);
-                break;
-        }
+@Override
+protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+        throws ServletException, IOException {
+    String action = request.getParameter("action");
+    if (action == null) {
+        action = "list";
     }
+
+    switch (action) {
+        case "new":
+            showNewForm(request, response);
+            break;
+        case "edit":
+            showEditForm(request, response);
+            break;
+        case "search": // NEW: Handle the search request
+            searchMechanics(request, response);
+            break;
+        default:
+            listMechanics(request, response);
+            break;
+    }
+}
+
+// Add this new private method to the servlet
+private void searchMechanics(HttpServletRequest request, HttpServletResponse response) 
+        throws ServletException, IOException {
+    String query = request.getParameter("query");
+    List<Mechanic> mechanicList = mechanicManager.searchMechanics(query);
+    
+    request.setAttribute("mechanicList", mechanicList);
+    RequestDispatcher dispatcher = request.getRequestDispatcher("mechanic-list.jsp");
+    dispatcher.forward(request, response);
+}
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 

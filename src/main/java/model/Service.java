@@ -4,15 +4,15 @@ public class Service {
     private String serviceId;
     private String vehicleReg;
     private String serviceType;
-    private String mechanic;
+    private String mechanicId;
     private String serviceDate;
     private double cost;
 
-    public Service(String serviceId, String vehicleReg, String serviceType, String mechanic, String serviceDate, double cost) {
+    public Service(String serviceId, String vehicleReg, String serviceType, String mechanicId, String serviceDate, double cost) {
         this.serviceId = serviceId;
         this.vehicleReg = vehicleReg;
         this.serviceType = serviceType;
-        this.mechanic = mechanic;
+        this.mechanicId = mechanicId;
         this.serviceDate = serviceDate;
         this.cost = cost;
     }
@@ -26,7 +26,7 @@ public class Service {
         return serviceType;
     }
     public String getMechanic(){
-        return mechanic;
+        return mechanicId;
     }
     public String getServiceDate(){
         return serviceDate;
@@ -40,8 +40,8 @@ public class Service {
     public void setServiceType(String serviceType){
         this.serviceType=serviceType;
     }
-    public void setMechanic(String mechanic){
-        this.mechanic=mechanic;
+    public void setMechanic(String mechanicId){
+        this.mechanicId=mechanicId;
     }
     public void setServiceDate(String serviceDate){
         this.serviceDate=serviceDate;
@@ -51,13 +51,13 @@ public class Service {
     }
     @Override
     public String toString(){
-        return "Service Id:" + serviceId + ", Vehicle Reg:" + vehicleReg + ", Service Type:" + serviceType + ", Mechanic:" + mechanic + ", Service Date:" + serviceDate + ", Cost:" + cost;
+        return "Service Id:" + serviceId + ", Vehicle Reg:" + vehicleReg + ", Service Type:" + serviceType + ", Mechanic:" + mechanicId + ", Service Date:" + serviceDate + ", Cost:" + cost;
     }
     public String toFileString(){
-        return serviceId + "," + vehicleReg + "," + serviceType + "," + mechanic + "," + serviceDate + "," + cost;
+        return serviceId + "," + vehicleReg + "," + serviceType + "," + mechanicId + "," + serviceDate + "," + cost;
     }
     public String toDisplayString(){
-        return "Service ID:" + serviceId + "\nVehicle Reg:" + vehicleReg + "\nService Type:" + serviceType + "\nMechanic:" + mechanic + "\nService Date:" + serviceDate + "\nCost:" + cost;
+        return "Service ID:" + serviceId + "\nVehicle Reg:" + vehicleReg + "\nService Type:" + serviceType + "\nMechanic:" + mechanicId + "\nService Date:" + serviceDate + "\nCost:" + cost;
     }
     public String toShortString(){
         return "Service Id:" + serviceId + ", Vehicle Reg:" + vehicleReg + ", Service Type:" + serviceType + ", Cost:" + cost;
@@ -66,7 +66,7 @@ public class Service {
         return serviceId + " - " + vehicleReg + " - " + serviceType;
     }
     public String toSummaryString(){
-        return "Service ID: " + serviceId + ", Vehicle Reg: " + vehicleReg + ", Service Type: " + serviceType + ", Mechanic: " + mechanic + ", Service Date: " + serviceDate + ", Cost: " + cost;
+        return "Service ID: " + serviceId + ", Vehicle Reg: " + vehicleReg + ", Service Type: " + serviceType + ", Mechanic: " + mechanicId + ", Service Date: " + serviceDate + ", Cost: " + cost;
     }
 
 }
