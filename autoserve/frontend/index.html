@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AutoServe — Vehicle Service Management System. HUD-powered dashboard for service centres.">
+  <title>AutoServe — Vehicle Service HUD</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Orbitron:wght@400..900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Anime.js -->
+  <script src="https://cdn.jsdelivr.net/npm/animejs@4.3.6/dist/bundles/anime.umd.min.js"></script>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/hud.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <!-- Cursor Glow -->
+  <div id="cursor-glow"></div>
+
+  <!-- Scan Line -->
+  <div id="scan-line"></div>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Main Layout -->
+  <div id="layout">
+    <!-- Sidebar Nav (hidden when logged out) -->
+    <nav id="main-nav" class="hidden">
+      <div class="nav-brand">
+        <div class="nav-logo">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="18" stroke="var(--accent-cyan)" stroke-width="1.5" opacity="0.6"/>
+            <path d="M10 24 L16 18 L20 22 L30 12" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="30" cy="12" r="3" fill="var(--accent-cyan)"/>
+          </svg>
+        </div>
+        <span class="nav-title">AUTOSERVE</span>
+      </div>
+
+      <div class="nav-links">
+        <a href="#/dashboard" class="nav-link" data-route="dashboard" id="nav-dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="#/service-entry" class="nav-link" data-route="service-entry" id="nav-service-entry">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/><circle cx="12" cy="12" r="10"/></svg>
+          <span>New Service</span>
+        </a>
+      </div>
+
+      <div class="nav-footer">
+        <div class="nav-user-info" id="nav-user-info">
+          <div class="nav-user-avatar" id="nav-user-avatar">O</div>
+          <div class="nav-user-details">
+            <span class="nav-user-name" id="nav-user-name">User</span>
+            <span class="nav-user-role" id="nav-user-role">Role</span>
+          </div>
+        </div>
+        <button class="nav-logout-btn" id="nav-logout-btn" title="Logout">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="app">
+      <!-- Views are injected here by the router -->
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cursor.js"></script>
+  <script src="js/views/landing.js"></script>
+  <script src="js/views/login.js"></script>
+  <script src="js/views/register.js"></script>
+  <script src="js/views/dashboard.js"></script>
+  <script src="js/views/service-entry.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
